@@ -1,0 +1,55 @@
+rabbitmq:
+  queue:
+    email:
+      name: email_queue
+  exchange:
+    email:
+      name: email_exchange
+  binding:
+    email:
+      name: email_routing_key
+
+server:
+  port: 8082
+
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username:
+    password:
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  datasource:
+    url: jdbc:h2:mem:mydatabasename;DB_CLOSE_DELAY=-1;
+    username: sa
+    password:
+  flyway:
+    url: dbc:h2:mem:mydatabasename;
+    user: sa
+    password:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+      show-sql: true
+      properties:
+        hibernate:
+          format-sql: true
+          naming:
+            physical-strategy: org.hibernate.boot.model.naming.PhysicalStrategyNamingStrategyStandardImpl
